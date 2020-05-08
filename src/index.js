@@ -207,8 +207,8 @@ export default class PerfectScrollbar {
       this.element.scrollLeft - this.lastScrollLeft
     );
 
-    if (element && element.scrollTop)this.lastScrollTop = Math.floor(this.element.scrollTop);
-    if (element && element.scrollTop) this.lastScrollLeft = this.element.scrollLeft;
+    if (this.element && this.element.scrollTop)this.lastScrollTop = Math.floor(this.element.scrollTop);
+    if (this.element && this.element.scrollTop) this.lastScrollLeft = this.element.scrollLeft;
   }
 
   destroy() {
