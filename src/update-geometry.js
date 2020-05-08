@@ -5,6 +5,7 @@ import { toInt } from './lib/util';
 
 export default function(i) {
   const element = i.element;
+  if (!element) { return; }
   const roundedScrollTop = Math.floor(element.scrollTop);
   const rect = element.getBoundingClientRect();
 
