@@ -144,7 +144,7 @@ export default class PerfectScrollbar {
           ? 'end'
           : null,
       y:
-        element.scrollTop <= 0
+        element && element.scrollTop && element.scrollTop <= 0
           ? 'start'
           : element.scrollTop >= this.contentHeight - this.containerHeight
           ? 'end'
@@ -155,8 +155,8 @@ export default class PerfectScrollbar {
 
     this.settings.handlers.forEach(handlerName => handlers[handlerName](this));
 
-    if (element) this.lastScrollTop = Math.floor(element.scrollTop); // for onScroll only
-    if (element) this.lastScrollLeft = element.scrollLeft; // for onScroll only
+    if (element && element.scrollTop) this.lastScrollTop = Math.floor(element.scrollTop); // for onScroll only
+    if (element && element.scrollTop) this.lastScrollLeft = element.scrollLeft; // for onScroll only
     this.event.bind(this.element, 'scroll', e => this.onScroll(e));
     updateGeometry(this);
   }
@@ -200,15 +200,15 @@ export default class PerfectScrollbar {
     }
 
     updateGeometry(this);
-    processScrollDiff(this, 'top', this.element.scrollTop - this.lastScrollTop);
+    processScrollDiff(this, 'top', this.element && this.element.scrollTop ? this.element.scrollTop - this.lastScrollTop : 0);
     processScrollDiff(
       this,
       'left',
       this.element.scrollLeft - this.lastScrollLeft
     );
 
-    this.lastScrollTop = Math.floor(this.element.scrollTop);
-    this.lastScrollLeft = this.element.scrollLeft;
+    if (element && element.scrollTop)this.lastScrollTop = Math.floor(this.element.scrollTop);
+    if (element && element.scrollTop) this.lastScrollLeft = this.element.scrollLeft;
   }
 
   destroy() {

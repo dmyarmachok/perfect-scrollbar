@@ -1244,7 +1244,7 @@ var PerfectScrollbar = function PerfectScrollbar(element, userSettings) {
         ? 'end'
         : null,
     y:
-      element.scrollTop <= 0
+      element && element.scrollTop && element.scrollTop <= 0
         ? 'start'
         : element.scrollTop >= this.contentHeight - this.containerHeight
         ? 'end'
@@ -1255,8 +1255,8 @@ var PerfectScrollbar = function PerfectScrollbar(element, userSettings) {
 
   this.settings.handlers.forEach(function (handlerName) { return handlers[handlerName](this$1); });
 
-  if (element) { this.lastScrollTop = Math.floor(element.scrollTop); } // for onScroll only
-  if (element) { this.lastScrollLeft = element.scrollLeft; } // for onScroll only
+  if (element && element.scrollTop) { this.lastScrollTop = Math.floor(element.scrollTop); } // for onScroll only
+  if (element && element.scrollTop) { this.lastScrollLeft = element.scrollLeft; } // for onScroll only
   this.event.bind(this.element, 'scroll', function (e) { return this$1.onScroll(e); });
   updateGeometry(this);
 };
@@ -1300,15 +1300,15 @@ PerfectScrollbar.prototype.onScroll = function onScroll (e) {
   }
 
   updateGeometry(this);
-  processScrollDiff(this, 'top', this.element.scrollTop - this.lastScrollTop);
+  processScrollDiff(this, 'top', this.element && this.element.scrollTop ? this.element.scrollTop - this.lastScrollTop : 0);
   processScrollDiff(
     this,
     'left',
     this.element.scrollLeft - this.lastScrollLeft
   );
 
-  this.lastScrollTop = Math.floor(this.element.scrollTop);
-  this.lastScrollLeft = this.element.scrollLeft;
+  if (element && element.scrollTop){ this.lastScrollTop = Math.floor(this.element.scrollTop); }
+  if (element && element.scrollTop) { this.lastScrollLeft = this.element.scrollLeft; }
 };
 
 PerfectScrollbar.prototype.destroy = function destroy () {
