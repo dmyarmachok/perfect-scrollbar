@@ -1,5 +1,5 @@
 /*!
- * perfect-scrollbar v1.5.1
+ * perfect-scrollbar v1.5.3
  * Copyright 2020 Hyunje Jun, MDBootstrap and Contributors
  * Licensed under MIT
  */
@@ -1307,8 +1307,8 @@ PerfectScrollbar.prototype.onScroll = function onScroll (e) {
     this.element.scrollLeft - this.lastScrollLeft
   );
 
-  if (element && element.scrollTop){ this.lastScrollTop = Math.floor(this.element.scrollTop); }
-  if (element && element.scrollTop) { this.lastScrollLeft = this.element.scrollLeft; }
+  if (this.element && this.element.scrollTop){ this.lastScrollTop = Math.floor(this.element.scrollTop); }
+  if (this.element && this.element.scrollTop) { this.lastScrollLeft = this.element.scrollLeft; }
 };
 
 PerfectScrollbar.prototype.destroy = function destroy () {
