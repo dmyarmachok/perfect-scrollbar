@@ -1,5 +1,5 @@
 /*!
- * perfect-scrollbar v1.5.0
+ * perfect-scrollbar v1.5.1
  * Copyright 2020 Hyunje Jun, MDBootstrap and Contributors
  * Licensed under MIT
  */
@@ -323,8 +323,9 @@ function updateGeometry(i) {
   var roundedScrollTop = Math.floor(element.scrollTop);
   var rect = element.getBoundingClientRect();
 
-  i.containerWidth = Math.ceil(rect.width);
-  i.containerHeight = Math.ceil(rect.height);
+  i.containerWidth = Math.round(rect.width);
+  i.containerHeight = Math.round(rect.height);
+
   i.contentWidth = element.scrollWidth;
   i.contentHeight = element.scrollHeight;
 
@@ -1252,8 +1253,8 @@ var PerfectScrollbar = function PerfectScrollbar(element, userSettings) {
 
   this.settings.handlers.forEach(function (handlerName) { return handlers[handlerName](this$1); });
 
-  this.lastScrollTop = Math.floor(element.scrollTop); // for onScroll only
-  this.lastScrollLeft = element.scrollLeft; // for onScroll only
+  if (element) { this.lastScrollTop = Math.floor(element.scrollTop); } // for onScroll only
+  if (element) { this.lastScrollLeft = element.scrollLeft; } // for onScroll only
   this.event.bind(this.element, 'scroll', function (e) { return this$1.onScroll(e); });
   updateGeometry(this);
 };

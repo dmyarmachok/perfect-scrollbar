@@ -155,8 +155,8 @@ export default class PerfectScrollbar {
 
     this.settings.handlers.forEach(handlerName => handlers[handlerName](this));
 
-    this.lastScrollTop = Math.floor(element.scrollTop); // for onScroll only
-    this.lastScrollLeft = element.scrollLeft; // for onScroll only
+    if (element) this.lastScrollTop = Math.floor(element.scrollTop); // for onScroll only
+    if (element) this.lastScrollLeft = element.scrollLeft; // for onScroll only
     this.event.bind(this.element, 'scroll', e => this.onScroll(e));
     updateGeometry(this);
   }
